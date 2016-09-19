@@ -1,0 +1,25 @@
+# generic
+*~
+*#
+.#*
+\#*#
+.*.sw[a-z]
+*.un~
+
+# vagrant
+.vagrant
+
+# Bundler
+Gemfile.lock
+.bundle/*
+
+# MacOS
+.DS_Store
+
+# atom
+.tags
+
+# rvm
+.ruby-gemset
+.ruby-version
+.rvmrc
