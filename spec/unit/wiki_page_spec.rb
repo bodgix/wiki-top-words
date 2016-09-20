@@ -2,7 +2,6 @@
 
 require_relative '../spec_helper'
 require_relative '../../lib/wiki_page'
-require 'pry-byebug'
 
 describe WikiTopWords::WikiPage do
   let(:page_id) { 42 }

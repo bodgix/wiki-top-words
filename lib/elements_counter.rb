@@ -1,5 +1,7 @@
 # encoding: UTF-8
 
+# Counting occurances of elements in a collection
+# Can be mixed-in to classes which implement to_a
 module ElementsCounter
   # Returns a Hash with elements as keys and number of occurances as values
   #
