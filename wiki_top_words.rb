@@ -2,7 +2,7 @@
 # encoding: UTF-8
 
 require_relative 'lib/wiki_page'
-require_relative 'lib/result_printer'
+require_relative 'lib/results_printer'
 
 PARAM_ERROR = 1
 

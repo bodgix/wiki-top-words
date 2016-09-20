@@ -12,10 +12,11 @@ module WikiTopWords
 
       while how_many > 0
         current = words_rev_order.shift
-        if current[1] == previous[1]
+        if current && current[1] == previous[1]
           txt << ", #{current[0]}"
         else
           puts txt
+          break unless current # we may have ran out of words before how_many
           txt = "- #{current[1]} #{current[0]}"
           how_many -= 1
         end
