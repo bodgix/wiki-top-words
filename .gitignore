@@ -23,3 +23,6 @@ Gemfile.lock
 .ruby-gemset
 .ruby-version
 .rvmrc
+
+# ruby
+coverage
