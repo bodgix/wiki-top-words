@@ -45,11 +45,21 @@ module WikiTopWords
       words
     end
 
+    def page_url
+      content # A request has to be made to know the URL. It's being memoized anyway
+      @page_url
+    end
+
+    def page_url=(u)
+      @page_url = u
+    end
+
     private
-    
+
     def get_page
       response = self.class.get(API_URI, query: DEFAULT_QUERY.merge(pageids: page_id))
       fail "WIKI returned a non 200 response: #{response.code}" unless response.code == 200
+      self.page_url = response.request.last_uri.to_s
       response.body
     end
   end
