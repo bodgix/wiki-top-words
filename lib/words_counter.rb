@@ -16,7 +16,7 @@ module WikiTopWords
     def sorted_words
       # The counted words array is built using Hash::to_a so it looks like:
       # [ ['words1', 3], ['word2', 5], ... ]
-      @sorted_words ||= words_as_array.sort { |a, b| a[1] <=> b[1] }.reverse
+      @sorted_words ||= words_as_array.sort { |a, b| a[1] <=> b[1] }
     end
   end
 end

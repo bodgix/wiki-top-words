@@ -4,12 +4,14 @@ module WikiTopWords
   module ResultsPrinter
     def self.print_results(wiki_page, how_many)
       print_header(wiki_page, how_many)
-      
-      previous = wiki_page.sorted_words.shift
+
+      words_rev_order = wiki_page.sorted_words.reverse
+
+      previous = words_rev_order.shift
       txt = "- #{previous[1]} #{previous[0]}"
 
       while how_many > 0
-        current = wiki_page.sorted_words.shift
+        current = words_rev_order.shift
         if current[1] == previous[1]
           txt << ", #{current[0]}"
         else
