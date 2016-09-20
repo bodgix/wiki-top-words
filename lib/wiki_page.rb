@@ -13,8 +13,13 @@ module WikiTopWords
 
     base_uri 'https://en.wikipedia.org/'
     API_URI = '/w/api.php'
-
     MIN_WORD_LENGTH = 4
+    DEFAULT_QUERY = {
+      action:       'query',
+      prop:         'extracts',
+      explaintext:  true,
+      format:       'json'
+    }
 
     def initialize(page_id)
       @page_id = page_id
@@ -41,17 +46,9 @@ module WikiTopWords
     end
 
     private
-    def default_query
-      {
-        action:       'query',
-        prop:         'extracts',
-        explaintext:  true,
-        format:       'json'
-      }
-    end
-
+    
     def get_page
-      response = self.class.get(API_URI, query: default_query.merge(pageids: page_id))
+      response = self.class.get(API_URI, query: DEFAULT_QUERY.merge(pageids: page_id))
       fail "WIKI returned a non 200 response: #{response.code}" unless response.code == 200
       response.body
     end
