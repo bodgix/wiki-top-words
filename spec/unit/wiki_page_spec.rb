@@ -38,4 +38,21 @@ describe WikiTopWords::WikiPage do
       expect(subject.extract).to eql('word1 and word2 word2 word1 word3')
     end
   end
+
+  shared_examples 'article to words' do
+    it 'transforms the article into an array of words' do
+      expect(subject).to receive(:get_page) { content }
+      expect(method).to eql(%w(word1 word2 word2 word1 word3))
+    end
+  end
+
+  describe 'words' do
+    let(:method) { subject.words }
+    it_behaves_like 'article to words'
+  end
+
+  describe 'to_a' do
+    let(:method) { subject.to_a }
+    it_behaves_like 'article to words'
+  end
 end

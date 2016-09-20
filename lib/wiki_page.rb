@@ -14,6 +14,8 @@ module WikiTopWords
     base_uri 'https://en.wikipedia.org/'
     API_URI = '/w/api.php'
 
+    MIN_WORD_LENGTH = 4
+
     def initialize(page_id)
       @page_id = page_id
     end
@@ -31,7 +33,7 @@ module WikiTopWords
     end
 
     def words
-      @words ||= extract.scan(/\w{4,}/)
+      @words ||= extract.scan(/\w{#{MIN_WORD_LENGTH},}/)
     end
 
     def to_a
