@@ -5,7 +5,7 @@ module WikiTopWords
     def self.print_results(wiki_page, how_many)
       print_header(wiki_page, how_many)
 
-      words_rev_order = wiki_page.sorted_words.reverse
+      words_rev_order = wiki_page.sorted_elements { |word| word.downcase }.reverse
 
       previous = words_rev_order.shift
       txt = "- #{previous[1]} #{previous[0]}"

@@ -2,12 +2,12 @@
 require 'httparty'
 require 'json'
 
-require_relative 'words_counter'
+require_relative 'elements_counter'
 
 module WikiTopWords
   class WikiPage
     include HTTParty
-    include WordsCounter
+    include ElementsCounter
 
     attr_reader :page_id
 
@@ -31,7 +31,11 @@ module WikiTopWords
     end
 
     def words
-      extract.scan(/\w{4,}/)
+      @words ||= extract.scan(/\w{4,}/)
+    end
+
+    def to_a
+      words
     end
 
     private
