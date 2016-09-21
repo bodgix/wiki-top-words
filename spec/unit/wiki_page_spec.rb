@@ -60,8 +60,11 @@ describe WikiTopWords::WikiPage do
   describe 'get_page' do
     let(:code) { 200 }
     let(:response) do
-      r = double
+      r = double('response')
+      req = double
       expect(r).to receive(:code).at_least(:once) { code }
+      allow(r).to receive(:request) { req }
+      allow(req).to receive(:last_uri) { 'test' }
       r
     end
     before do

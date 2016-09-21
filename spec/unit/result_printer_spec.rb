@@ -16,6 +16,7 @@ describe WikiTopWords::ResultsPrinter do
     end
     let(:wiki) do
       w = double
+      expect(w).to receive(:page_url)
       expect(w).to receive(:title)
       expect(w).to receive(:sorted_elements) { elements }
       w
