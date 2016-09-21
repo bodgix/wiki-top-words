@@ -49,7 +49,7 @@ describe WikiTopWords::TopWordsPrinter do
     let(:words) { [['word1', 3], ['word2', 3], ['word3', 2], ['word4', 1]] }
     it 'combines words with the same number of occurences' do
       merged_words = [ ['word1, word2', 3], ['word3', 2], ['word4', 1] ]
-      expect(described_class.merge_equal_words(words, how_many))
+      expect(described_class.merge_equal_words(words, how_many)).to eql(merged_words)
     end
   end
 end
