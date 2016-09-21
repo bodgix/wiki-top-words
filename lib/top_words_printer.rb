@@ -13,7 +13,7 @@ module WikiTopWords
     end
 
     def self.print_header(wiki_page, how_many)
-      puts "URL: #{wiki_page.page_url}"
+      puts "URL: #{wiki_page.url}"
       puts "Title: #{wiki_page.title}"
       puts "Top #{how_many} words:"
     end

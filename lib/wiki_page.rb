@@ -11,7 +11,7 @@ module WikiTopWords
     include ElementsCounter
 
     attr_reader :page_id
-    attr_writer :page_url
+    attr_writer :url
 
     base_uri 'https://en.wikipedia.org/'
     API_URI = '/w/api.php'.freeze
@@ -47,9 +47,9 @@ module WikiTopWords
       words
     end
 
-    def page_url
+    def url
       content # A request has to be made to know the URL.
-      @page_url
+      @url
     end
 
     private
@@ -59,7 +59,7 @@ module WikiTopWords
                                 query: DEFAULT_QUERY.merge(pageids: page_id))
       raise "WIKI returned a non 200 response: #{response.code}" \
         unless response.code == 200
-      self.page_url = response.request.last_uri.to_s
+      self.url = response.request.last_uri.to_s
       response.body
     end
   end
