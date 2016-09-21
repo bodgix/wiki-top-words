@@ -14,7 +14,7 @@ describe ElementsCounter do
       expect(element).to receive(:test).exactly(3).times
       expect(subject).to receive(:to_a) { test_data }
 
-      subject.elements_with_count { |e| e.test }
+      subject.elements_with_count(&:test)
     end
 
     it 'returns a hash with elements and number of occurances' do

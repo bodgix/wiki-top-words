@@ -74,8 +74,9 @@ describe WikiTopWords::WikiPage do
         explaintext:  true,
         format:       'json'
       }
-      expect(described_class).to receive(:get).\
-        with('/w/api.php', query: default_query.merge(pageids: page_id)) { response }
+      expect(described_class).to receive(:get) \
+        .with('/w/api.php',
+              query: default_query.merge(pageids: page_id)) { response }
 
       # get_page is a private method. we need a wrapper public method
       subject.instance_eval do
