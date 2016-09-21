@@ -21,28 +21,28 @@ describe WikiTopWords::WikiPage do
   describe 'content' do
     let(:page_content) { '{"test": 42}' }
     it 'gets the page and parse JSON' do
-      expect(subject).to receive(:get_page) { page_content }
+      expect(subject).to receive(:page_json) { page_content }
       expect(subject.content).to eql(JSON.parse(page_content))
     end
   end
 
   describe 'title' do
     it 'returns the title key from the content json' do
-      expect(subject).to receive(:get_page) { content }
+      expect(subject).to receive(:page_json) { content }
       expect(subject.title).to eql('Test')
     end
   end
 
   describe 'extract' do
     it 'returns the extract key from the content json' do
-      expect(subject).to receive(:get_page) { content }
+      expect(subject).to receive(:page_json) { content }
       expect(subject.extract).to eql('word1 and word2 word2 word1 word3')
     end
   end
 
   shared_examples 'article to words' do
     it 'transforms the article into an array of words' do
-      expect(subject).to receive(:get_page) { content }
+      expect(subject).to receive(:page_json) { content }
       expect(method).to eql(%w(word1 word2 word2 word1 word3))
     end
   end
@@ -57,7 +57,7 @@ describe WikiTopWords::WikiPage do
     it_behaves_like 'article to words'
   end
 
-  describe 'get_page' do
+  describe 'page_json' do
     let(:code) { 200 }
     let(:response) do
       r = double('response')
@@ -79,8 +79,8 @@ describe WikiTopWords::WikiPage do
 
       # get_page is a private method. we need a wrapper public method
       subject.instance_eval do
-        def call_get_page
-          get_page
+        def call_page_json
+          page_json
         end
       end
     end
@@ -89,14 +89,14 @@ describe WikiTopWords::WikiPage do
       it 'does a HTTP GET and returns the page content' do
         expect(response).to receive(:body) { 'test' }
 
-        expect(subject.call_get_page).to eql('test')
+        expect(subject.call_page_json).to eql('test')
       end
     end
 
     context 'when wikipedia returns a non-200 code' do
       let(:code) { 500 }
       it 'does a HTTP get and raises an error' do
-        expect { subject.call_get_page }.to raise_error(RuntimeError)
+        expect { subject.call_page_json }.to raise_error(RuntimeError)
       end
     end
   end
