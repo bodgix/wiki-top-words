@@ -5,36 +5,38 @@ require 'json'
 require_relative 'elements_counter'
 
 module WikiTopWords
+  # Wikipedia page abstraction class
   class WikiPage
     include HTTParty
     include ElementsCounter
 
     attr_reader :page_id
+    attr_writer :page_url
 
     base_uri 'https://en.wikipedia.org/'
-    API_URI = '/w/api.php'
+    API_URI = '/w/api.php'.freeze
     MIN_WORD_LENGTH = 4
     DEFAULT_QUERY = {
       action:       'query',
       prop:         'extracts',
       explaintext:  true,
       format:       'json'
-    }
+    }.freeze
 
     def initialize(page_id)
       @page_id = page_id
     end
 
     def content
-      @content ||= JSON.parse(get_page)
+      @content ||= JSON.parse(page_json)
     end
 
     def title
-      content['query']['pages']["#{page_id}"]['title']
+      content['query']['pages'][page_id.to_s]['title']
     end
 
     def extract
-      content['query']['pages']["#{page_id}"]['extract']
+      content['query']['pages'][page_id.to_s]['extract']
     end
 
     def words
@@ -46,19 +48,17 @@ module WikiTopWords
     end
 
     def page_url
-      content # A request has to be made to know the URL. It's being memoized anyway
+      content # A request has to be made to know the URL.
       @page_url
-    end
-
-    def page_url=(u)
-      @page_url = u
     end
 
     private
 
-    def get_page
-      response = self.class.get(API_URI, query: DEFAULT_QUERY.merge(pageids: page_id))
-      fail "WIKI returned a non 200 response: #{response.code}" unless response.code == 200
+    def page_json
+      response = self.class.get(API_URI,
+                                query: DEFAULT_QUERY.merge(pageids: page_id))
+      raise "WIKI returned a non 200 response: #{response.code}" \
+        unless response.code == 200
       self.page_url = response.request.last_uri.to_s
       response.body
     end

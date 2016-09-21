@@ -32,7 +32,7 @@ describe 'wiki_top_words' do
       expect(options).to receive(:words_no)
 
       expect(WikiTopWords::WikiPage).to receive(:new)
-      expect(WikiTopWords::ResultsPrinter).to receive(:print_results)
+      expect(WikiTopWords::TopWordsPrinter).to receive(:print_results)
       main
     end
   end

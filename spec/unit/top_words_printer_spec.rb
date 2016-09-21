@@ -1,11 +1,9 @@
 # encoding: UTF-8
 
 require_relative '../spec_helper'
-require_relative '../../lib/results_printer'
+require_relative '../../lib/top_words_printer'
 
-require 'pry-byebug'
-
-describe WikiTopWords::ResultsPrinter do
+describe WikiTopWords::TopWordsPrinter do
   describe '#print_results' do
     let(:word) { ['word', 13] }
     let(:elements) do

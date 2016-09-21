@@ -2,7 +2,7 @@
 # encoding: UTF-8
 
 require_relative 'lib/wiki_page'
-require_relative 'lib/results_printer'
+require_relative 'lib/top_words_printer'
 
 PARAM_ERROR = 1
 
@@ -27,9 +27,7 @@ def main
   options = parse_options(ARGV)
 
   wiki_page = WikiTopWords::WikiPage.new(options.page_id)
-  WikiTopWords::ResultsPrinter.print_results(wiki_page, options.words_no)
+  WikiTopWords::TopWordsPrinter.print_results(wiki_page, options.words_no)
 end
 
-if $PROGRAM_NAME == __FILE__
-  main
-end
+main if $PROGRAM_NAME == __FILE__
