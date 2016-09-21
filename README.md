@@ -4,7 +4,7 @@ wiki_top_words.rb
 
 # Synopsis
 
-$ ./wiki_top_words.rb 21721040 10                                        ‹ruby-2.3.1@wiki-top-words›
+$ ./wiki_top_words.rb 21721040 10
 Title: Stack Overflow
 Top 10 words:
 - 22 stack
