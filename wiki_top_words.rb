@@ -4,10 +4,10 @@
 require_relative 'lib/wiki_page'
 require_relative 'lib/top_words_printer'
 
-PARAM_ERROR = 1
+PARAM_ERROR_EXIT_CODE = 1
 
 def parse_options(argv)
-  error(usage, PARAM_ERROR) if argv.length != 2
+  error(usage, PARAM_ERROR_EXIT_CODE) if argv.length != 2
   options = OpenStruct.new
   options.page_id = argv[0]
   options.words_no = argv[1].to_i
