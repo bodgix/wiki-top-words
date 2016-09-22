@@ -56,7 +56,10 @@ describe WikiTopWords::WikiPage do
   end
 
   describe 'url' do
-    let(:page42_url) { 'https://en.wikipedia.org/w/api.php?action=query&prop=extracts&explaintext=true&format=json&pageids=42' }
+    let(:page42_url) do
+      'https://en.wikipedia.org/w/api.php?action=query' \
+      '&prop=extracts&explaintext=true&format=json&pageids=42'
+    end
     it 'retrieves content and returns the URL used' do
       url = subject.url
       expect(url).to eql(page42_url)
@@ -96,7 +99,6 @@ describe WikiTopWords::WikiPage do
       it 'does a HTTP GET, returns the page content and saves the URL' do
         expect(response).to receive(:body) { 'test' }
         expect(subject.call_page_json).to eql('test')
-
       end
     end
 
