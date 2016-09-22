@@ -3,8 +3,6 @@
 require_relative '../spec_helper'
 require_relative '../../lib/wiki_page'
 
-require 'pry-byebug'
-
 describe WikiTopWords::WikiPage do
   let(:page_id) { 42 }
   let(:subject) { described_class.new(page_id) }
@@ -20,7 +18,7 @@ describe WikiTopWords::WikiPage do
 
   describe 'content' do
     let(:page_content) { '{"test": 42}' }
-    it 'gets the page and parse JSON' do
+    it 'gets the page and parses JSON' do
       expect(subject).to receive(:page_json) { page_content }
       expect(subject.content).to eql(JSON.parse(page_content))
     end
@@ -57,6 +55,14 @@ describe WikiTopWords::WikiPage do
     it_behaves_like 'article to words'
   end
 
+  describe 'url' do
+    let(:page42_url) { 'https://en.wikipedia.org/w/api.php?action=query&prop=extracts&explaintext=true&format=json&pageids=42' }
+    it 'retrieves content and returns the URL used' do
+      url = subject.url
+      expect(url).to eql(page42_url)
+    end
+  end
+
   describe 'page_json' do
     let(:code) { 200 }
     let(:response) do
@@ -87,10 +93,10 @@ describe WikiTopWords::WikiPage do
     end
 
     context 'when wikipedia returns 200 OK' do
-      it 'does a HTTP GET and returns the page content' do
+      it 'does a HTTP GET, returns the page content and saves the URL' do
         expect(response).to receive(:body) { 'test' }
-
         expect(subject.call_page_json).to eql('test')
+
       end
     end
 
