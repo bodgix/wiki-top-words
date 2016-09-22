@@ -18,6 +18,14 @@ Top 10 words:
 - 6 being, reputation
 - 5 atwood, exchange, website, user, 2008
 
+# Requirements
+
+It's easiest to use RVM to create a runtime environment for the project:
+
+```
+$ rvm --ruby-version use 2.3.1@wiki-top-words --create
+```
+
 # Description
 
 Reads the WikiPedia article whose ID is passed as an argument, and prints
