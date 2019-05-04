@@ -1,4 +1,5 @@
-# encoding: UTF-8
+# frozen_string_literal: true
+
 require 'httparty'
 require 'json'
 
@@ -14,13 +15,13 @@ module WikiTopWords
     attr_writer :url
 
     base_uri 'https://en.wikipedia.org/'
-    API_URI = '/w/api.php'.freeze
+    API_URI = '/w/api.php'
     MIN_WORD_LENGTH = 4
     DEFAULT_QUERY = {
-      action:       'query',
-      prop:         'extracts',
-      explaintext:  true,
-      format:       'json'
+      action: 'query',
+      prop: 'extracts',
+      explaintext: true,
+      format: 'json'
     }.freeze
 
     def initialize(page_id)
@@ -59,6 +60,7 @@ module WikiTopWords
                                 query: DEFAULT_QUERY.merge(pageids: page_id))
       raise "WIKI returned a non 200 response: #{response.code}" \
         unless response.code == 200
+
       self.url = response.request.last_uri.to_s
       response.body
     end

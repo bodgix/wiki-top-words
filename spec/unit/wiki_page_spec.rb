@@ -1,4 +1,4 @@
-# encoding: UTF-8
+# frozen_string_literal: true
 
 require_relative '../spec_helper'
 require_relative '../../lib/wiki_page'
@@ -41,7 +41,7 @@ describe WikiTopWords::WikiPage do
   shared_examples 'article to words' do
     it 'transforms the article into an array of words' do
       expect(subject).to receive(:page_json) { content }
-      expect(method).to eql(%w(word1 word2 word2 word1 word3))
+      expect(method).to eql(%w[word1 word2 word2 word1 word3])
     end
   end
 
@@ -78,10 +78,10 @@ describe WikiTopWords::WikiPage do
     end
     before do
       default_query = {
-        action:       'query',
-        prop:         'extracts',
-        explaintext:  true,
-        format:       'json'
+        action: 'query',
+        prop: 'extracts',
+        explaintext: true,
+        format: 'json'
       }
       expect(described_class).to receive(:get) \
         .with('/w/api.php',

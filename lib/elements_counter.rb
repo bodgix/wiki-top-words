@@ -1,4 +1,4 @@
-# encoding: UTF-8
+# frozen_string_literal: true
 
 # Counting occurances of elements in a collection
 # Can be mixed-in to classes which implement to_a

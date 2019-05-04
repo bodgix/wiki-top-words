@@ -1,4 +1,4 @@
-# encoding: UTF-8
+# frozen_string_literal: true
 
 # rubocop:disable HandleExceptions
 begin
@@ -8,8 +8,8 @@ rescue LoadError
 end
 # rubocop:enable HandleExceptions
 
-task default: %w(test)
-task test: [:spec, :rubocop]
+task default: %w[test]
+task test: %i[spec rubocop]
 task :rubocop do
   sh 'rubocop'
 end

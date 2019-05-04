@@ -1,5 +1,5 @@
 #!/usr/bin/env ruby
-# encoding: UTF-8
+# frozen_string_literal: true
 
 require_relative 'lib/wiki_page'
 require_relative 'lib/top_words_printer'

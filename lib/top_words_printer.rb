@@ -1,4 +1,4 @@
-# encoding: UTF-8
+# frozen_string_literal: true
 
 # Top level encapsulating module for the project
 module WikiTopWords

@@ -1,10 +1,10 @@
-# encoding: UTF-8
+# frozen_string_literal: true
 
 require_relative '../spec_helper'
 require_relative '../../wiki_top_words'
 
 describe 'wiki_top_words' do
-  let(:argv) { %w(42 5) }
+  let(:argv) { %w[42 5] }
 
   describe 'parse_options' do
     context 'when wrong number of options is passed' do

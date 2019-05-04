@@ -1,11 +1,11 @@
-# encoding: UTF-8
+# frozen_string_literal: true
 
 require_relative '../spec_helper'
 require_relative '../../lib/elements_counter'
 
 describe ElementsCounter do
   let(:subject) { class Test; include ElementsCounter; end.new }
-  before { @test_words = %w(word1 word2 word3 word1 word1 word2) }
+  before { @test_words = %w[word1 word2 word3 word1 word1 word2] }
 
   describe 'elements_with_count' do
     it 'calls a block for every element' do
